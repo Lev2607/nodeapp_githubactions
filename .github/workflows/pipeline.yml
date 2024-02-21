@@ -35,3 +35,6 @@ jobs:
           remote_host: <host>.compute.amazonaws.com
           remote_user: ubuntu
           remote_key: "${{ secrets.SSH_PRIVATE_KEY }}"
+      - name: Start app
+        run: |
+          ssh -o StrictHostKeyChecking=no ubuntu@3-67-47-220.eu-central-1.compute.amazonaws.com "cd /var/www/my-app/ && npm install && nohup npm start &"    
