@@ -6,11 +6,9 @@ afterAll(done => {
 });
 
 describe('GET /', () => {
-  it('responds with the expected HTML', async () => {
+  it('responds with Hello, World!', async () => {
     const response = await request(server).get('/');
     expect(response.statusCode).toBe(200);
-    expect(response.text).toContain('<h1>Willkommen auf der Startseite</h1>');
-    expect(response.text).toContain('<p>Hier ist etwas zusätzlicher Text.</p>');
-    expect(response.text).toContain('<p>Du kannst auch andere HTML-Elemente verwenden.</p>');
+    expect(response.text).toBe('Hello, World!');
   });
 });
