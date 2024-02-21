@@ -6,8 +6,9 @@ app.get('/', (req, res) => {
   res.send('Hello, World!');
 });
 
-app.listen(port, () => {
-  console.log(`App listening at http://localhost:${port}`);
-});
-
-module.exports = app; // Exportieren der App
+// ...
+const server = app.listen(port, () => {
+    console.log(`App listening at http://localhost:${port}`);
+  });
+  
+  module.exports = server; // Exportieren des Servers

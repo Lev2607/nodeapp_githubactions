@@ -1,11 +1,14 @@
 const request = require('supertest');
-const app = require('./index');
+const server = require('./index');
+
+afterAll(done => {
+  server.close(done);
+});
 
 describe('GET /', () => {
-  it('responds with Hello, World!', (done) => {
-    request(app)
-      .get('/')
-      .expect(200)
-      .expect('Hello, World!', done);
+  it('responds with Hello, World!', async () => {
+    const response = await request(server).get('/');
+    expect(response.statusCode).toBe(200);
+    expect(response.text).toBe('Hello, World!');
   });
 });
