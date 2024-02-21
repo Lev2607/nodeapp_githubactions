@@ -36,5 +36,12 @@ jobs:
           remote_key: "${{ secrets.SSH_PRIVATE_KEY }}"
 
       - name: Start app
-        run: | 
-          ssh -o StrictHostKeyChecking=no ec2-3-67-47-220.eu-central-1.compute.amazonaws.com "cd /var/www/my-app && npm install && nohup npm start &"
+        uses: appleboy/ssh-action@master
+        with:
+          host: ec2-3-67-47-220.eu-central-1.compute.amazonaws.com
+          username: ubuntu
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /var/www/my-app
+            npm install
+            nohup npm start &
